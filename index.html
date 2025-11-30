@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium digital guide to transform your skills">
+    <title>Asistent Medical Germania</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1292ee;
+            --color-text: #2c2c2c;
+            --color-text-light: #666666;
+            --color-border: #e8e8e8;
+            --color-bg-light: #fafafa;
+            /* --color-bg-light: #f8f9fa; */
+            --max-width: 1260px;
+        }
+
+        body {
+            font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            background: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        /* Serif font for headings */
+        h1, h2, h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 4vw;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            padding: 30px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .store-title {
+            font-size: 2.2rem;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 400;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            position: absolute;
+            right: 4vw;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 2px;
+            background: var(--color-text);
+            transition: all 0.3s;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1000;
+            visibility: hidden;
+            transition: background 0.3s, visibility 0.3s;
+        }
+
+        .mobile-menu.active {
+            visibility: visible;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            padding: 60px 30px 30px;
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .mobile-menu-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--color-text);
+            background: none;
+            border: none;
+        }
+
+        /* Header Section */
+        .header-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .page-title h1 {
+            font-size: 2.6rem;
+            color: var(--color-text);
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        .header-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 600px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background: var(--color-bg-light);
+            text-align: center;
+        }
+
+        .avatar {
+            margin-bottom: 30px;
+            margin-top: -100px;
+        }
+
+        .avatar img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+        }
+
+        .features-section h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        .feature p {
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        .store-description h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+
+        .store-description p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Product Section */
+        .product-section {
+            padding: 100px 0;
+        }
+
+        .product {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: #212529;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .product h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--color-text);
+        }
+
+        .product-description {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .price-container {
+            margin-bottom: 40px;
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--color-text);
+            font-family: Georgia, serif;
+        }
+
+        .price-note {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: #212529;
+            color: white;
+            padding: 18px 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .buy-button:hover {
+            background: #004d73;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 48, 73, 0.3);
+        }
+
+        /* Features */
+        .features {
+            margin-top: 60px;
+            padding-top: 40px;
+        }
+
+        .features ul {
+            list-style: none;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 12px 0;
+            color: var(--color-text);
+            position: relative;
+            padding-left: 30px;
+            font-size: 1rem;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #212529;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 120px 0;
+            background: #ffffff;
+        }
+
+        .testimonial-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-image {
+            text-align: center;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial-quote-panel {
+            /* background: #212529; */
+            background: #212529;
+            padding: 60px 50px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial-quote-panel blockquote {
+            margin: 0;
+            padding: 0;
+        }
+
+        .testimonial-quote-panel q {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #ffffff;
+            font-style: italic;
+            display: block;
+            margin-bottom: 30px;
+            quotes: """ """ "'" "'";
+        }
+
+        .testimonial-quote-panel q::before {
+            content: open-quote;
+        }
+
+        .testimonial-quote-panel q::after {
+            content: close-quote;
+        }
+
+        .testimonial-citation {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-style: normal;
+        }
+
+        .about-btn:hover {
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        .footer-section {
+            padding: 60px 0 40px;
+            background: var(--color-bg-light);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .footer-links h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            color: var(--color-text);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-mission h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            color: var(--color-text);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .footer-mission p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--color-text-light);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            color: #778da9;
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 6vw;
+            }
+
+            .store-title {
+                font-size: 1.4rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .header-section {
+                padding: 60px 0;
+            }
+
+            .header-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .page-title {
+                text-align: center;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .header-image {
+                order: -1;
+            }
+
+            .header-image img {
+                max-height: 250px;
+            }
+
+            .about-section {
+                padding: 60px 0;
+            }
+
+            .features-section {
+                padding: 60px 0;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .store-description h2 {
+                font-size: 1.6rem;
+            }
+
+            .product-section {
+                padding: 60px 0;
+            }
+
+            .product h2 {
+                font-size: 1.8rem;
+            }
+
+            .price {
+                font-size: 2.8rem;
+            }
+
+            .buy-button {
+                padding: 16px 40px;
+                font-size: 0.9rem;
+                width: 100%;
+            }
+
+            .testimonial-section {
+                padding: 60px 0;
+            }
+
+            .testimonial-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .testimonial-quote-panel {
+                padding: 40px 30px;
+            }
+
+            .testimonial-quote-panel q {
+                font-size: 1.2rem;
+                line-height: 1.7;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="store-title">Asistent Medical Germania</a>
+                <div class="nav-links">
+                    <a href="#store">Store</a>
+                    <a href="#about-me">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <button class="close-menu" id="closeMenu">&times;</button>
+            <div class="mobile-menu-links">
+                <a href="#store">Store</a>
+                <a href="#about-me">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="container">
+            <div class="header-content">
+                <div class="page-title">
+                    <h1>Asistent Medical Germania</h1>
+                    <p class="page-subtitle">Premium resources to transform your health journey with expert guidance and proven frameworks.</p>
+                </div>
+                <div class="header-image">
+                    <img src="assets/Doctors-bro.svg" alt="Medical Guide">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="avatar">
+                <img src="assets/avatar.jpg" alt="Creator">
+            </div>
+            <div class="store-description">
+                <h2>Expert Health Guidance</h2>
+                <p>Created with care by health professionals to help you achieve lasting results through evidence-based strategies and practical advice.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2>What You'll Learn</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <img src="assets/Webinar-bro.svg" alt="Comprehensive content illustration">
+                    </div>
+                    <h3>Comprehensive Content</h3>
+                    <p>150+ pages of in-depth strategies, frameworks, and real-world examples you can apply immediately.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <img src="assets/Certification-rafiki.svg" alt="Actionable steps illustration">
+                    </div>
+                    <h3>Actionable Steps</h3>
+                    <p>Step-by-step instructions with templates and checklists to implement what you learn right away.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <img src="assets/Doctors-rafiki.svg" alt="Proven results illustration">
+                    </div>
+                    <h3>Proven Results</h3>
+                    <p>Methods tested by 1,000+ professionals who achieved measurable results in their field.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <div class="product">
+                <span class="product-badge">Digital Download</span>
+                <h2>Complete Health Guide</h2>
+                <p class="product-description">A comprehensive 150-page guide packed with actionable advice, proven frameworks, and step-by-step instructions to help you master your health goals and create sustainable lifestyle changes.</p>
+
+                <div class="price-container">
+                    <div class="price">$29</div>
+                    <p class="price-note">One-time payment • Instant access</p>
+                </div>
+
+                <a href="https://gumroad.com/l/your-product" class="buy-button">Purchase Now</a>
+
+                <div class="features">
+                    <ul>
+                        <li>150+ pages of expert content</li>
+                        <li>Downloadable templates & worksheets</li>
+                        <li>Lifetime access to all updates</li>
+                        <li>30-day money-back guarantee</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="testimonial-section" id="about-me">
+        <div class="container">
+            <div class="testimonial-content">
+                <div class="testimonial-image">
+                    <img src="assets/avatar.jpg" alt="About Me">
+                </div>
+                <div class="testimonial-quote-panel">
+                    <div style="text-align: left;">
+                        <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; font-weight: 400;">About Me</h2>
+                        <p style="font-size: 1.1rem; color: #ffffff; line-height: 1.7; margin-bottom: 20px; opacity: 0.95;">Hi, I'm passionate about helping people achieve their health and wellness goals through evidence-based guidance and practical strategies. With years of experience in the medical field, I've created resources that make complex health information accessible and actionable.</p>
+                        <p style="font-size: 1.1rem; color: #ffffff; line-height: 1.7; margin-bottom: 30px; opacity: 0.95;">My mission is to empower you with the knowledge and tools you need to take control of your health journey. Whether you're just starting out or looking to optimize your current routine, I'm here to support you every step of the way.</p>
+                        <a href="#store" class="about-btn" style="display: inline-block; background: #ffffff; color: #212529; padding: 14px 32px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 4px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;">View My Work</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer-section">
+        <div class="container">
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#about-me">About Me</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#store">Shop</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-mission">
+                        <h3>My Mission</h3>
+                        <p>To empower individuals with accessible, evidence-based health information and practical strategies that make a real difference in their daily lives. I believe that everyone deserves to understand their health and have the tools to make informed decisions for their wellbeing.</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@yourchannel" target="_blank" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const burgerMenu = document.getElementById('burgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
+
+        // Open mobile menu
+        burgerMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            burgerMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close mobile menu
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.remove('active');
+                burgerMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu when clicking a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                burgerMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
+</body>
+</html>

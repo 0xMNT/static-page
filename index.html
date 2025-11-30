@@ -6,6 +6,16 @@
     <meta name="description" content="Premium digital guide to transform your skills">
     <title>Asistent Medical Germania</title>
 
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -58,16 +68,43 @@
         }
 
         .store-title {
-            font-size: 2.2rem;
             font-family: Georgia, 'Times New Roman', serif;
             font-weight: 400;
             color: var(--color-text);
             text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.1;
+        }
+
+        .store-title .line1 {
+            font-size: 3.2rem;
+            text-transform: lowercase;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 400;
+        }
+
+        .store-title .line2 {
+            font-size: 3.2rem;
+            text-transform: lowercase;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 400;
+        }
+
+        .store-title .line3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-top: 12px;
         }
 
         .nav-links {
             display: flex;
             gap: 30px;
+            margin-top: 10px;
         }
 
         .nav-links a {
@@ -181,7 +218,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 80px 0;
+            padding: 0 0 80px 0;
         }
 
         .header-content {
@@ -213,12 +250,17 @@
             max-width: 100%;
             height: auto;
             max-height: 600px;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .header-image img.fade {
+            opacity: 0;
         }
 
         /* About Section */
         .about-section {
             padding: 80px 0;
-            background: var(--color-bg-light);
+            background: #f5f5f5;
             text-align: center;
         }
 
@@ -244,13 +286,13 @@
         .features-section h2 {
             font-size: 2rem;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            gap: 30px;
         }
 
         .feature {
@@ -300,6 +342,7 @@
         /* Product Section */
         .product-section {
             padding: 100px 0;
+            background: #f5f5f5;
         }
 
         .product {
@@ -368,15 +411,15 @@
         }
 
         .buy-button:hover {
-            background: #004d73;
+            background: #404040;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 48, 73, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* Features */
         .features {
-            margin-top: 60px;
-            padding-top: 40px;
+            margin-top: 0;
+            padding-top: 0;
         }
 
         .features ul {
@@ -411,22 +454,24 @@
 
         .testimonial-content {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            align-items: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            align-items: stretch;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .testimonial-image {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .testimonial-image img {
             width: 100%;
-            max-width: 450px;
-            height: auto;
-            border-radius: 8px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px 0 0 8px;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
@@ -434,7 +479,7 @@
             /* background: #212529; */
             background: #212529;
             padding: 60px 50px;
-            border-radius: 8px;
+            border-radius: 0 8px 8px 0;
             position: relative;
         }
 
@@ -475,10 +520,105 @@
             box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
         }
 
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: #f5f5f5;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-text h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.2rem;
+            color: var(--color-text);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .contact-text p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.95rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--color-text);
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-text);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .submit-button {
+            padding: 14px 40px;
+            background: #212529;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-self: flex-start;
+        }
+
+        .submit-button:hover {
+            background: #404040;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
         /* Footer */
         .footer-section {
             padding: 60px 0 40px;
-            background: var(--color-bg-light);
+            background: #f5f5f5;
         }
 
         footer {
@@ -568,8 +708,21 @@
                 padding: 0 6vw;
             }
 
-            .store-title {
-                font-size: 1.4rem;
+            .top-nav {
+                padding: 20px 0 10px 0;
+            }
+
+            .nav-content {
+                gap: 0;
+            }
+
+            .store-title .line1,
+            .store-title .line2 {
+                font-size: 2.5rem;
+            }
+
+            .store-title .line3 {
+                font-size: 1.0rem;
             }
 
             .nav-links {
@@ -581,12 +734,14 @@
             }
 
             .header-section {
-                padding: 60px 0;
+                min-height: auto;
+                padding: 20px 0 60px 0;
+                align-items: flex-start;
             }
 
             .header-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 10px;
             }
 
             .page-title {
@@ -599,10 +754,12 @@
 
             .header-image {
                 order: -1;
+                margin-top: 0;
             }
 
             .header-image img {
                 max-height: 250px;
+                display: block;
             }
 
             .about-section {
@@ -610,12 +767,18 @@
             }
 
             .features-section {
-                padding: 60px 0;
+                padding: 40px 0;
+            }
+
+            .features-section h2 {
+                margin-bottom: 0;
             }
 
             .features {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 15px;
+                margin-top: 0;
+                padding-top: 0;
             }
 
             .store-description h2 {
@@ -658,6 +821,32 @@
                 line-height: 1.7;
             }
 
+            .contact-section {
+                padding: 60px 0;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-text {
+                text-align: center;
+            }
+
+            .contact-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -671,9 +860,13 @@
     <nav class="top-nav">
         <div class="container">
             <div class="nav-content">
-                <a href="index.html" class="store-title">Asistent Medical Germania</a>
+                <a href="index.html" class="store-title">
+                    <span class="line1">asistent</span>
+                    <span class="line2">medical</span>
+                    <span class="line3">germania</span>
+                </a>
                 <div class="nav-links">
-                    <a href="#store">Store</a>
+                    <a href="#shop">Shop</a>
                     <a href="#about-me">About</a>
                     <a href="#contact">Contact</a>
                 </div>
@@ -707,7 +900,7 @@
                     <p class="page-subtitle">Premium resources to transform your health journey with expert guidance and proven frameworks.</p>
                 </div>
                 <div class="header-image">
-                    <img src="assets/Doctors-bro.svg" alt="Medical Guide">
+                    <img src="assets/Doctors-bro.svg" alt="Medical Guide" id="headerSlideshow">
                 </div>
             </div>
         </div>
@@ -757,7 +950,7 @@
     </section>
 
     <!-- Product Section -->
-    <section class="product-section">
+    <section class="product-section" id="shop">
         <div class="container">
             <div class="product">
                 <span class="product-badge">Digital Download</span>
@@ -802,6 +995,46 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h2>Get In Touch</h2>
+                    <p>Have any questions or comments? Use this form to contact me at any time.</p>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="8110f085-60dd-4077-8bfc-38bee1c70c0e">
+                        <input type="hidden" name="subject" value="New Contact Form Submission from Asistent Medical Germania">
+                        <input type="hidden" name="from_name" value="Asistent Medical Germania Website">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer Section -->
     <section class="footer-section">
         <div class="container">
@@ -812,7 +1045,7 @@
                         <ul>
                             <li><a href="#about-me">About Me</a></li>
                             <li><a href="#contact">Contact</a></li>
-                            <li><a href="#store">Shop</a></li>
+                            <li><a href="#shop">Shop</a></li>
                         </ul>
                     </div>
                     <div class="footer-mission">
@@ -876,6 +1109,38 @@
                 document.body.style.overflow = '';
             });
         });
+    </script>
+
+    <!-- Header Image Slideshow -->
+    <script>
+        const slideshowImages = [
+            'assets/Doctors-bro.svg',
+            'assets/Health professional team-pana.svg',
+            'assets/Medical care-pana.svg',
+            'assets/Doctor-pana.svg',
+            'assets/Certification-rafiki.svg',
+            'assets/Cardiologist-pana.svg'
+        ];
+
+        let currentImageIndex = 0;
+        const headerImage = document.getElementById('headerSlideshow');
+
+        function changeImage() {
+            // Fade out
+            headerImage.classList.add('fade');
+
+            // Wait for fade out to complete, then change image
+            setTimeout(() => {
+                currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
+                headerImage.src = slideshowImages[currentImageIndex];
+
+                // Fade in
+                headerImage.classList.remove('fade');
+            }, 500); // Match CSS transition duration
+        }
+
+        // Change image every 5 seconds
+        setInterval(changeImage, 5000);
     </script>
 </body>
 </html>

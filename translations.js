@@ -124,7 +124,7 @@ const translations = {
         navContact: "Contact",
 
         // Header
-        mainTitle: "Dikhel. Siklŏvel. kerel.",
+        mainTitle: "Observă. Învață. Fă.",
         mainSubtitle: "Resurse premium pentru a transforma călătoria ta în sănătate cu îndrumări experte și cadre dovedite.",
 
         // About Section

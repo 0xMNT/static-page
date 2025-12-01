@@ -61,7 +61,7 @@ const translations = {
     de: {
         // Navigation
         navShop: "Shop",
-        navAbout: "Über",
+        navAbout: "About",
         navContact: "Kontakt",
 
         // Header

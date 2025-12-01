@@ -1,0 +1,11 @@
+# Robots.txt for Asistent Medical Germania
+
+User-agent: *
+Allow: /
+
+# Disallow access to specific directories (if any)
+Disallow: /admin/
+Disallow: /.git/
+
+# Sitemap location
+Sitemap: https://asistentmedicalgermania.de/sitemap.xml

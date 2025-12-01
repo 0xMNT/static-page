@@ -31,14 +31,18 @@ mobileMenuLinks.forEach(link => {
     });
 });
 
-const slideshowDir = 'assets/slideshow/';
+const slideshowDir = 'assets/';
 const slideshowImageFiles = [
     'Cardiologist-pana.svg',
     'Doctor-pana.svg',
-    'Doctors-bro.svg',
-    'Doctors-rafiki.svg',
+    'World Hepatitis Day-bro.svg',
     'Health professional team-pana.svg',
     'Medical care-pana.svg',
+    'Winning the battle against Coronavirus-bro.svg',
+    'Medicine-amico.svg',
+    'Cardiologist-rafiki.svg',
+    'Winning the battle against Coronavirus-rafiki.svg',
+    'Doctors-bro.svg',
 ];
 
 const slideshowImages = slideshowImageFiles.map(file => slideshowDir + file);

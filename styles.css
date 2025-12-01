@@ -20,8 +20,8 @@ a, button, input, textarea, .feature, .product, .avatar img {
 }
 
 :root {
-    --color-primary: #44444E;
-    --color-primary-hover: #686877;
+    --color-primary: #76153C;
+    --color-primary-hover: #C43979;
     --color-text: #2c2c2c;
     --color-text-light: #666666;
     --color-border: #e8e8e8;
@@ -168,7 +168,7 @@ h1, h2, h3 {
 }
 
 .nav-links a:hover {
-    color: var(--color-text);
+    color: var(--color-primary-hover);
     transform: translateY(-3px);
 }
 
@@ -180,7 +180,7 @@ h1, h2, h3 {
 
 .lang-toggle {
     background: none;
-    border: none;
+    border: 1px solid #f5f5f5;
     font-size: 0.85rem;
     color: var(--color-text-light);
     cursor: pointer;
@@ -414,8 +414,9 @@ h1, h2, h3 {
     border-radius: 50%;
     object-fit: contain;
     border: none;
-    box-shadow: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
     filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.15));
+    background-color: rgba(118, 21, 60, 0.8);
 }
 
 .features-section {
@@ -505,7 +506,7 @@ h1, h2, h3 {
 
 .product-badge {
     display: inline-block;
-    background: var(--color-primary);
+    background: var(--color-primary-hover);
     color: var(--color-white-text);
     padding: 6px 16px;
     border-radius: 20px;

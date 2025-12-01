@@ -15,845 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --color-primary: #1292ee;
-            --color-text: #2c2c2c;
-            --color-text-light: #666666;
-            --color-border: #e8e8e8;
-            --color-bg-light: #fafafa;
-            /* --color-bg-light: #f8f9fa; */
-            --max-width: 1260px;
-        }
-
-        body {
-            font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--color-text);
-            line-height: 1.6;
-            background: #ffffff;
-            font-size: 1.1rem;
-        }
-
-        /* Serif font for headings */
-        h1, h2, h3 {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-weight: 400;
-            line-height: 1.2;
-        }
-
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 4vw;
-        }
-
-        /* Top Navigation */
-        .top-nav {
-            padding: 30px 0;
-        }
-
-        .nav-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            position: relative;
-        }
-
-        .store-title {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-weight: 400;
-            color: var(--color-text);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            line-height: 1.1;
-        }
-
-        .store-title .line1 {
-            font-size: 3.2rem;
-            text-transform: lowercase;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 400;
-        }
-
-        .store-title .line2 {
-            font-size: 3.2rem;
-            text-transform: lowercase;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 400;
-        }
-
-        .store-title .line3 {
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 300;
-            letter-spacing: 4px;
-            margin-top: 12px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            margin-top: 10px;
-        }
-
-        .nav-links a {
-            color: var(--color-text-light);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.85rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-text);
-        }
-
-        /* Burger Menu */
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-            position: absolute;
-            right: 4vw;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .burger-menu span {
-            width: 25px;
-            height: 2px;
-            background: var(--color-text);
-            transition: all 0.3s;
-        }
-
-        .burger-menu.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-
-        .burger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger-menu.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0);
-            z-index: 1000;
-            visibility: hidden;
-            transition: background 0.3s, visibility 0.3s;
-        }
-
-        .mobile-menu.active {
-            visibility: visible;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .mobile-menu-content {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 70%;
-            max-width: 300px;
-            height: 100vh;
-            background: white;
-            padding: 60px 30px 30px;
-            transform: translateX(100%);
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .mobile-menu.active .mobile-menu-content {
-            transform: translateX(0);
-        }
-
-        .mobile-menu-links {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .mobile-menu-links a {
-            color: var(--color-text);
-            text-decoration: none;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--color-text);
-            background: none;
-            border: none;
-        }
-
-        /* Header Section */
-        .header-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 0 80px 0;
-        }
-
-        .header-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .page-title h1 {
-            font-size: 2.6rem;
-            color: var(--color-text);
-            margin-bottom: 20px;
-        }
-
-        .page-subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text-light);
-            line-height: 1.6;
-        }
-
-        .header-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header-image img {
-            max-width: 100%;
-            height: auto;
-            max-height: 600px;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .header-image img.fade {
-            opacity: 0;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 80px 0;
-            background: #f5f5f5;
-            text-align: center;
-        }
-
-        .avatar {
-            margin-bottom: 30px;
-            margin-top: -100px;
-        }
-
-        .avatar img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 80px 0;
-        }
-
-        .features-section h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .feature-icon {
-            width: 280px;
-            height: 280px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .feature-icon img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .feature h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--color-text);
-        }
-
-        .feature p {
-            color: var(--color-text-light);
-            line-height: 1.7;
-        }
-
-        .store-description h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--color-text);
-        }
-
-        .store-description p {
-            font-size: 1.1rem;
-            color: var(--color-text-light);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Product Section */
-        .product-section {
-            padding: 100px 0;
-            background: #f5f5f5;
-        }
-
-        .product {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .product-badge {
-            display: inline-block;
-            background: #212529;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .product h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--color-text);
-        }
-
-        .product-description {
-            font-size: 1.1rem;
-            color: var(--color-text-light);
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        .price-container {
-            margin-bottom: 40px;
-        }
-
-        .price {
-            font-size: 3.5rem;
-            font-weight: 300;
-            color: var(--color-text);
-            font-family: Georgia, serif;
-        }
-
-        .price-note {
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-            margin-top: 8px;
-        }
-
-        .buy-button {
-            display: inline-block;
-            background: #212529;
-            color: white;
-            padding: 18px 60px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .buy-button:hover {
-            background: #404040;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Features */
-        .features {
-            margin-top: 0;
-            padding-top: 0;
-        }
-
-        .features ul {
-            list-style: none;
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .features li {
-            padding: 12px 0;
-            color: var(--color-text);
-            position: relative;
-            padding-left: 30px;
-            font-size: 1rem;
-        }
-
-        .features li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #212529;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Testimonial Section */
-        .testimonial-section {
-            padding: 120px 0;
-            background: #ffffff;
-        }
-
-        .testimonial-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            align-items: stretch;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonial-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .testimonial-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px 0 0 8px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .testimonial-quote-panel {
-            /* background: #212529; */
-            background: #212529;
-            padding: 60px 50px;
-            border-radius: 0 8px 8px 0;
-            position: relative;
-        }
-
-        .testimonial-quote-panel blockquote {
-            margin: 0;
-            padding: 0;
-        }
-
-        .testimonial-quote-panel q {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1.5rem;
-            line-height: 1.8;
-            color: #ffffff;
-            font-style: italic;
-            display: block;
-            margin-bottom: 30px;
-            quotes: """ """ "'" "'";
-        }
-
-        .testimonial-quote-panel q::before {
-            content: open-quote;
-        }
-
-        .testimonial-quote-panel q::after {
-            content: close-quote;
-        }
-
-        .testimonial-citation {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-style: normal;
-        }
-
-        .about-btn:hover {
-            background: rgba(255, 255, 255, 0.9) !important;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 100px 0;
-            background: #f5f5f5;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            align-items: start;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-text h2 {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 2.2rem;
-            color: var(--color-text);
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        .contact-text p {
-            font-size: 1.1rem;
-            color: var(--color-text-light);
-            line-height: 1.7;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-size: 0.95rem;
-            color: var(--color-text);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 12px 16px;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            font-size: 1rem;
-            font-family: inherit;
-            color: var(--color-text);
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-text);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-        }
-
-        .submit-button {
-            padding: 14px 40px;
-            background: #212529;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            align-self: flex-start;
-        }
-
-        .submit-button:hover {
-            background: #404040;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Footer */
-        .footer-section {
-            padding: 60px 0 40px;
-            background: #f5f5f5;
-        }
-
-        footer {
-            text-align: center;
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            margin-bottom: 50px;
-            text-align: left;
-        }
-
-        .footer-links h3 {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1.3rem;
-            color: var(--color-text);
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links ul li a {
-            color: var(--color-text-light);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links ul li a:hover {
-            color: var(--color-text);
-        }
-
-        .footer-mission h3 {
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 1.3rem;
-            color: var(--color-text);
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .footer-mission p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--color-text-light);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 30px;
-        }
-
-        .social-links a {
-            color: var(--color-text);
-            text-decoration: none;
-            transition: color 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-links a:hover {
-            color: #778da9;
-        }
-
-        .social-links svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 6vw;
-            }
-
-            .top-nav {
-                padding: 20px 0 10px 0;
-            }
-
-            .nav-content {
-                gap: 0;
-            }
-
-            .store-title .line1,
-            .store-title .line2 {
-                font-size: 2.5rem;
-            }
-
-            .store-title .line3 {
-                font-size: 1.0rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .burger-menu {
-                display: flex;
-            }
-
-            .header-section {
-                min-height: auto;
-                padding: 20px 0 60px 0;
-                align-items: flex-start;
-            }
-
-            .header-content {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .page-title {
-                text-align: center;
-            }
-
-            .page-title h1 {
-                font-size: 2rem;
-            }
-
-            .header-image {
-                order: -1;
-                margin-top: 0;
-            }
-
-            .header-image img {
-                max-height: 250px;
-                display: block;
-            }
-
-            .about-section {
-                padding: 60px 0;
-            }
-
-            .features-section {
-                padding: 40px 0;
-            }
-
-            .features-section h2 {
-                margin-bottom: 0;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                margin-top: 0;
-                padding-top: 0;
-            }
-
-            .store-description h2 {
-                font-size: 1.6rem;
-            }
-
-            .product-section {
-                padding: 60px 0;
-            }
-
-            .product h2 {
-                font-size: 1.8rem;
-            }
-
-            .price {
-                font-size: 2.8rem;
-            }
-
-            .buy-button {
-                padding: 16px 40px;
-                font-size: 0.9rem;
-                width: 100%;
-            }
-
-            .testimonial-section {
-                padding: 60px 0;
-            }
-
-            .testimonial-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .testimonial-quote-panel {
-                padding: 40px 30px;
-            }
-
-            .testimonial-quote-panel q {
-                font-size: 1.2rem;
-                line-height: 1.7;
-            }
-
-            .contact-section {
-                padding: 60px 0;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .contact-text {
-                text-align: center;
-            }
-
-            .contact-text h2 {
-                font-size: 1.8rem;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .submit-button {
-                width: 100%;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                margin-bottom: 40px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Top Navigation -->
@@ -866,9 +28,17 @@
                     <span class="line3">germania</span>
                 </a>
                 <div class="nav-links">
-                    <a href="#shop">Shop</a>
-                    <a href="#about-me">About</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#shop" data-i18n="navShop">Shop</a>
+                    <a href="#about-me" data-i18n="navAbout">About</a>
+                    <a href="#contact" data-i18n="navContact">Contact</a>
+                </div>
+                <div class="language-dropdown">
+                    <button class="lang-toggle">RO</button>
+                    <div class="lang-menu">
+                        <a href="#" onclick="changeLanguage('en'); return false;">EN</a>
+                        <a href="#" onclick="changeLanguage('de'); return false;">DE</a>
+                        <a href="#" onclick="changeLanguage('ro'); return false;">RO</a>
+                    </div>
                 </div>
                 <div class="burger-menu" id="burgerMenu">
                     <span></span>
@@ -884,9 +54,12 @@
         <div class="mobile-menu-content">
             <button class="close-menu" id="closeMenu">&times;</button>
             <div class="mobile-menu-links">
-                <a href="#store">Store</a>
-                <a href="#about-me">About</a>
-                <a href="#contact">Contact</a>
+                <a href="#shop" data-i18n="navShop">Store</a>
+                <a href="#about-me" data-i18n="navAbout">About</a>
+                <a href="#contact" data-i18n="navContact">Contact</a>
+                <a href="#" class="lang-link active" data-lang="ro" onclick="changeLanguage('ro'); return false;">Română</a>
+                <a href="#" class="lang-link" data-lang="de" onclick="changeLanguage('de'); return false;">Deutsch</a>
+                <a href="#" class="lang-link" data-lang="en" onclick="changeLanguage('en'); return false;">English</a>
             </div>
         </div>
     </div>
@@ -895,12 +68,12 @@
     <section class="header-section">
         <div class="container">
             <div class="header-content">
-                <div class="page-title">
-                    <h1>Asistent Medical Germania</h1>
-                    <p class="page-subtitle">Premium resources to transform your health journey with expert guidance and proven frameworks.</p>
+                <div class="page-title fade-in-left">
+                    <h1 data-i18n="mainTitle">Asistent Medical Germania</h1>
+                    <p class="page-subtitle" data-i18n="mainSubtitle">Premium resources to transform your health journey with expert guidance and proven frameworks.</p>
                 </div>
-                <div class="header-image">
-                    <img src="assets/Doctors-bro.svg" alt="Medical Guide" id="headerSlideshow">
+                <div class="header-image fade-in-right">
+                    <img src="assets/slideshow/Doctors-bro.svg" alt="Medical Guide" id="headerSlideshow">
                 </div>
             </div>
         </div>
@@ -910,66 +83,66 @@
     <section class="about-section">
         <div class="container">
             <div class="avatar">
-                <img src="assets/avatar.jpg" alt="Creator">
+                <img src="assets/smile.png" alt="Creator">
             </div>
-            <div class="store-description">
-                <h2>Expert Health Guidance</h2>
-                <p>Created with care by health professionals to help you achieve lasting results through evidence-based strategies and practical advice.</p>
+            <div class="store-description fade-in">
+                <h2 data-i18n="aboutTitle">Expert Health Guidance</h2>
+                <p data-i18n="aboutText">Created with care by health professionals to help you achieve lasting results through evidence-based strategies and practical advice.</p>
             </div>
         </div>
     </section>
 
     <!-- What You'll Learn Section -->
-    <section class="features-section">
+    <section class="features-section section-divider-top">
         <div class="container">
-            <h2>What You'll Learn</h2>
+            <h2 class="fade-in" data-i18n="featuresTitle">What You'll Learn</h2>
             <div class="features">
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">
                         <img src="assets/Webinar-bro.svg" alt="Comprehensive content illustration">
                     </div>
-                    <h3>Comprehensive Content</h3>
-                    <p>150+ pages of in-depth strategies, frameworks, and real-world examples you can apply immediately.</p>
+                    <h3 data-i18n="feature1Title">Comprehensive Content</h3>
+                    <p data-i18n="feature1Text">150+ pages of in-depth strategies, frameworks, and real-world examples you can apply immediately.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">
                         <img src="assets/Certification-rafiki.svg" alt="Actionable steps illustration">
                     </div>
-                    <h3>Actionable Steps</h3>
-                    <p>Step-by-step instructions with templates and checklists to implement what you learn right away.</p>
+                    <h3 data-i18n="feature2Title">Actionable Steps</h3>
+                    <p data-i18n="feature2Text">Step-by-step instructions with templates and checklists to implement what you learn right away.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">
                         <img src="assets/Doctors-rafiki.svg" alt="Proven results illustration">
                     </div>
-                    <h3>Proven Results</h3>
-                    <p>Methods tested by 1,000+ professionals who achieved measurable results in their field.</p>
+                    <h3 data-i18n="feature3Title">Proven Results</h3>
+                    <p data-i18n="feature3Text">Methods tested by 1,000+ professionals who achieved measurable results in their field.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Product Section -->
-    <section class="product-section" id="shop">
+    <section class="product-section section-divider-top" id="shop">
         <div class="container">
-            <div class="product">
-                <span class="product-badge">Digital Download</span>
-                <h2>Complete Health Guide</h2>
-                <p class="product-description">A comprehensive 150-page guide packed with actionable advice, proven frameworks, and step-by-step instructions to help you master your health goals and create sustainable lifestyle changes.</p>
+            <div class="product fade-in">
+                <span class="product-badge" data-i18n="productBadge">Digital Download</span>
+                <h2 data-i18n="productTitle">Complete Health Guide</h2>
+                <p class="product-description" data-i18n="productDescription">A comprehensive 150-page guide packed with actionable advice, proven frameworks, and step-by-step instructions to help you master your health goals and create sustainable lifestyle changes.</p>
 
                 <div class="price-container">
-                    <div class="price">$29</div>
-                    <p class="price-note">One-time payment • Instant access</p>
+                    <div class="price" data-i18n="productPrice">29€</div>
+                    <p class="price-note" data-i18n="productPriceNote">One-time payment • Instant access</p>
                 </div>
 
-                <a href="https://gumroad.com/" class="buy-button">Purchase Now</a>
+                <a href="https://gumroad.com/" class="buy-button" data-i18n="productButton">Purchase Now</a>
 
                 <div class="features">
                     <ul>
-                        <li>150+ pages of expert content</li>
-                        <li>Downloadable templates & worksheets</li>
-                        <li>Lifetime access to all updates</li>
-                        <li>30-day money-back guarantee</li>
+                        <li data-i18n="productFeature1">150+ pages of expert content</li>
+                        <li data-i18n="productFeature2">Downloadable templates & worksheets</li>
+                        <li data-i18n="productFeature3">Lifetime access to all updates</li>
+                        <li data-i18n="productFeature4">30-day money-back guarantee</li>
                     </ul>
                 </div>
             </div>
@@ -979,16 +152,16 @@
     <!-- About Me Section -->
     <section class="testimonial-section" id="about-me">
         <div class="container">
-            <div class="testimonial-content">
+            <div class="testimonial-content fade-in">
                 <div class="testimonial-image">
-                    <img src="assets/avatar.jpg" alt="About Me">
+                    <img src="assets/avatar2.jpg" alt="About Me">
                 </div>
                 <div class="testimonial-quote-panel">
                     <div style="text-align: left;">
-                        <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; font-weight: 400;">About Me</h2>
-                        <p style="font-size: 1.1rem; color: #ffffff; line-height: 1.7; margin-bottom: 20px; opacity: 0.95;">Hi, I'm passionate about helping people achieve their health and wellness goals through evidence-based guidance and practical strategies. With years of experience in the medical field, I've created resources that make complex health information accessible and actionable.</p>
-                        <p style="font-size: 1.1rem; color: #ffffff; line-height: 1.7; margin-bottom: 30px; opacity: 0.95;">My mission is to empower you with the knowledge and tools you need to take control of your health journey. Whether you're just starting out or looking to optimize your current routine, I'm here to support you every step of the way.</p>
-                        <a href="#store" class="about-btn" style="display: inline-block; background: #ffffff; color: #212529; padding: 14px 32px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 4px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;">View My Work</a>
+                        <h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 2.2rem; color: var(--color-white-text); margin-bottom: 20px; font-weight: 400;" data-i18n="aboutMeTitle">About Me</h2>
+                        <p style="font-size: 1.1rem; color: var(--color-white-text); line-height: 1.7; margin-bottom: 20px; opacity: 0.95;" data-i18n="aboutMePara1">Hi, I'm passionate about helping people achieve their health and wellness goals through evidence-based guidance and practical strategies. With years of experience in the medical field, I've created resources that make complex health information accessible and actionable.</p>
+                        <p style="font-size: 1.1rem; color: var(--color-white-text); line-height: 1.7; margin-bottom: 20px; opacity: 0.95;" data-i18n="aboutMePara2">My mission is to empower you with the knowledge and tools you need to take control of your health journey. Whether you're just starting out or looking to optimize your current routine, I'm here to support you every step of the way.</p>
+                        <p style="font-size: 1.1rem; color: var(--color-white-text); line-height: 1.7; margin-top: 30px; opacity: 0.95; font-style: thin;" data-i18n="aboutMeSignature">— Tuța</p>
                     </div>
                 </div>
             </div>
@@ -999,11 +172,11 @@
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="contact-content">
-                <div class="contact-text">
-                    <h2>Get In Touch</h2>
-                    <p>Have any questions or comments? Use this form to contact me at any time.</p>
+                <div class="contact-text fade-in-left">
+                    <h2 data-i18n="contactTitle">Get In Touch</h2>
+                    <p data-i18n="contactText">Have any questions or comments? Use this form to contact me at any time.</p>
                 </div>
-                <div class="contact-form-wrapper">
+                <div class="contact-form-wrapper fade-in-right">
                     <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
                         <input type="hidden" name="access_key" value="8110f085-60dd-4077-8bfc-38bee1c70c0e">
                         <input type="hidden" name="subject" value="New Contact Form Submission from Asistent Medical Germania">
@@ -1012,23 +185,23 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="firstName">First Name</label>
+                                <label for="firstName" data-i18n="contactFirstName">First Name</label>
                                 <input type="text" id="firstName" name="firstName" required>
                             </div>
                             <div class="form-group">
-                                <label for="lastName">Last Name</label>
+                                <label for="lastName" data-i18n="contactLastName">Last Name</label>
                                 <input type="text" id="lastName" name="lastName" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email" data-i18n="contactEmail">Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
+                            <label for="message" data-i18n="contactMessage">Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="submit-button">Send Message</button>
+                        <button type="submit" class="submit-button" data-i18n="contactButton">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -1041,16 +214,16 @@
             <footer>
                 <div class="footer-content">
                     <div class="footer-links">
-                        <h3>Quick Links</h3>
+                        <h3 data-i18n="footerLinksTitle">Quick Links</h3>
                         <ul>
-                            <li><a href="#about-me">About Me</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="#shop">Shop</a></li>
+                            <li><a href="#about-me" data-i18n="footerLinkAbout">About Me</a></li>
+                            <li><a href="#contact" data-i18n="footerLinkContact">Contact</a></li>
+                            <li><a href="#shop" data-i18n="footerLinkShop">Shop</a></li>
                         </ul>
                     </div>
                     <div class="footer-mission">
-                        <h3>My Mission</h3>
-                        <p>To empower individuals with accessible, evidence-based health information and practical strategies that make a real difference in their daily lives. I believe that everyone deserves to understand their health and have the tools to make informed decisions for their wellbeing.</p>
+                        <h3 data-i18n="footerMissionTitle">My Mission</h3>
+                        <p data-i18n="footerMissionText">To empower individuals with accessible, evidence-based health information and practical strategies that make a real difference in their daily lives. I believe that everyone deserves to understand their health and have the tools to make informed decisions for their wellbeing.</p>
                     </div>
                 </div>
                 <div class="social-links">
@@ -1071,76 +244,7 @@
         </div>
     </section>
 
-    <!-- Mobile Menu Script -->
-    <script>
-        const burgerMenu = document.getElementById('burgerMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
-
-        // Open mobile menu
-        burgerMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            burgerMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        // Close mobile menu
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            burgerMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close menu when clicking outside
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target === mobileMenu) {
-                mobileMenu.classList.remove('active');
-                burgerMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Close menu when clicking a link
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                burgerMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-    </script>
-
-    <!-- Header Image Slideshow -->
-    <script>
-        const slideshowImages = [
-            'assets/Doctors-bro.svg',
-            'assets/Health professional team-pana.svg',
-            'assets/Medical care-pana.svg',
-            'assets/Doctor-pana.svg',
-            'assets/Certification-rafiki.svg',
-            'assets/Cardiologist-pana.svg'
-        ];
-
-        let currentImageIndex = 0;
-        const headerImage = document.getElementById('headerSlideshow');
-
-        function changeImage() {
-            // Fade out
-            headerImage.classList.add('fade');
-
-            // Wait for fade out to complete, then change image
-            setTimeout(() => {
-                currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
-                headerImage.src = slideshowImages[currentImageIndex];
-
-                // Fade in
-                headerImage.classList.remove('fade');
-            }, 500); // Match CSS transition duration
-        }
-
-        // Change image every 5 seconds
-        setInterval(changeImage, 5000);
-    </script>
+    <script src="translations.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
